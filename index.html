@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- ...[keep your existing meta, styles and everything as is]... -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fyynk — Launching Soon</title>
@@ -13,214 +14,56 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800;900&display=swap">
   <style>
-    :root{
-      --bg: #0f172a;
-      --card: #0b1224cc;
-      --text: #e5e7eb;
-      --muted:#a1a1aa;
-      --accent: #22d3ee;
-      --accent-2:#818cf8;
-      --ring: #22d3ee44;
-      --pill-bg: #0f172add;
-      --pill-border: #ffffff26;
-      --box-bg: #18223aeb;
-      --box-border: #293654;
+    /* [Your styles as provided above] */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      top:0; left:0; width:100vw; height:100vh;
+      background:rgba(15,23,42,0.8);
+      z-index:1000;
+      justify-content: center;
+      align-items: center;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
-      color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 10% -10%, #1f2937 0%, transparent 60%),
-        radial-gradient(1000px 600px at 110% 10%, #111827 0%, transparent 60%),
-        linear-gradient(120deg, #0b1224 0%, #0f172a 50%, #0b1224 100%);
-      background-attachment: fixed;
+    .modal-content {
+      background: var(--card);
+      padding: 28px 22px 22px 22px;
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #0004;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      position: relative;
     }
-    .container{max-width:1000px;margin:0 auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:center;gap:14px;padding-top:18px}
-    .logo{
-      width:64px;height:64px;border-radius:16px;overflow:hidden;background:#0b1224;display:grid;place-items:center;box-shadow:0 10px 30px #00000066, 0 0 0 1px #ffffff0d
+    .close-modal {
+      position: absolute;
+      top: 10px; right: 16px;
+      font-size: 18px;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
-    .brand{font-weight:800;letter-spacing:0.2px;font-size:26px}
-    .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffffff1a;border-radius:999px;padding:8px 12px;background:#0b122480;backdrop-filter: blur(6px);}
-    .badge svg{opacity:.9}
-    .hero{margin:42px auto 28px; text-align:center}
-    .title{font-weight:900; font-size: clamp(28px, 5vw, 48px); line-height:1.1; margin:12px 0 6px}
-    .subtitle{color:var(--muted); font-size: clamp(14px, 2.4vw, 18px)}
-    .card{
-      margin:28px auto; 
-      background:var(--card); 
-      border:1px solid #ffffff1a; 
-      border-radius:24px; 
-      box-shadow:0 20px 60px #00000066; 
-      padding:0;
-    }
-    .main-card-content {
-      padding:30px 24px 24px 24px;
-      border-radius:24px;
-      background:var(--card);
-    }
-    .about h2{margin:0 0 10px; font-size:22px}
-    .about p{margin:10px 0 2px 0; color:#d4d4d8; line-height:1.5;}
-    .list{display:grid; gap:10px; margin-top:14px;}
-    .pill{
-      display:flex; align-items:flex-start; gap:10px; 
-      padding:13px 16px;
-      border:1px dashed var(--pill-border); 
-      border-radius:14px; 
-      background:var(--pill-bg);
-    }
-    .pill svg{min-width:20px}
-    .side{
-      padding:16px 18px;
-      display:flex;
-      flex-direction:column; gap:20px;
-    }
-    .box{
-      background:var(--box-bg);
-      border:1px solid var(--box-border);
-      border-radius:18px;
-      box-shadow:0 4px 24px #0002;
-      padding:20px 16px;
-    }
-    .box strong{
-      font-weight:800;
-      font-size:1.1em;
-    }
-    .box .number{
-      font-size:22px;
-      font-weight:800;
-      letter-spacing:0.3px;
-    }
-    .box .notify{
-      display:flex; gap:8px; margin-top:16px; margin-bottom:6px;
-    }
-    .notify input{
-      flex:1;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid #ffffff22;
-      background:#0b1224;
-      color:var(--text);
-      outline:none;
-    }
-    .notify input:focus{box-shadow:0 0 0 6px var(--ring)}
-    .notify button{
-      padding:12px 16px;
-      border-radius:12px;
-      border:1px solid #ffffff22;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#0b1224;
-      font-weight:800;
-      cursor:pointer;
-    }
-    .box small{
-      color:#9ca3af;
-      display:block;
-      margin-top:4px;
-    }
-    .ghost-logo{
-      position:absolute; 
-      inset:auto auto -80px -80px; 
-      width:220px; 
-      height:220px; 
-      opacity:.06; 
-      filter: blur(0.3px) saturate(1.1);
-    }
-    footer{
-      margin:32px auto 18px; 
-      text-align:center; 
-      color:#9ca3af; 
-      font-size:13px;
-    }
-    .line{
-      height:1px; 
-      background:linear-gradient(90deg, transparent, #ffffff26, transparent); 
-      margin:18px 0;
-    }
-    .tag{
-      display:inline-flex; 
-      gap:6px; 
-      align-items:center; 
-      font-size:12px; 
-      color:#cbd5e1; 
-      opacity:.85;
-    }
-    .tag .dot{
-      width:7px; 
-      height:7px; 
-      border-radius:999px; 
-      background: radial-gradient(circle at 30% 30%, white, #22d3ee 40%, #22d3ee);
-      box-shadow: 0 0 18px #22d3eeaa;
-    }
-    .fade{opacity:0; transform: translateY(6px); animation: fade .7s ease forwards}
-    .fade2{opacity:0; transform: translateY(8px); animation: fade .7s .08s ease forwards}
-    .fade3{opacity:0; transform: translateY(10px); animation: fade .7s .16s ease forwards}
-    @keyframes fade{
-      to{opacity:1; transform: translateY(0)}
-    }
-    @media(min-width:820px){
-      .grid{grid-template-columns: 1.2fr 0.8fr}
-      .side{padding:32px 24px;}
-    }
-    .grid{
-      display:grid; 
-      grid-template-columns:1fr; 
-      gap:0;
+    #successMessage {
+      color: var(--accent);
+      font-weight: bold;
+      margin: 16px 0 0 0;
+      font-size: 17px;
+      display:none;
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- [keep existing header, hero, main card] -->
     <header class="fade">
-      <div class="logo" aria-hidden="true">
-        <img src="/image.png" alt="Fyynk logo" style="width:70%; height:70%; object-fit:contain; filter: drop-shadow(0 2px 8px rgba(34,211,238,0.35));" />
-      </div>
-      <div class="brand">Fyynk</div>
-      <span class="badge" title="Pickup only — no delivery">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7l9 4 9-4-9-4-9 4Z" stroke="currentColor" stroke-width="1.5"/><path d="M21 7v10l-9 4-9-4V7" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v10" stroke="currentColor" stroke-width="1.5"/></svg>
-        Pickup‑only
-      </span>
+      <!-- [Your logo, brand, badge] -->
+      <!-- ... -->
     </header>
     <section class="hero">
-      <div class="tag fade2"><span class="dot"></span> Launching Soon</div>
-      <h1 class="title fade2">Hyperlocal <span style="background:linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Pickup</span> for Food & Groceries</h1>
-      <p class="subtitle fade3">Skip delivery delays. Order from partner restaurants & grocery stores and <strong>pick up</strong> from the store or our nearest hubs — fast, reliable, and local.</p>
+      <!-- ... -->
     </section>
-    <!-- Main Card: About + Features -->
     <main class="card fade3">
-      <div class="main-card-content">
-        <section class="about">
-          <h2>About Fyynk</h2>
-          <p>
-            Fyynk is a hyperlocal platform designed for the way your city actually moves. We help you reserve food and grocery items from trusted local stores and <strong>pick them up</strong> at the perfect time — directly from the store or from one of our nearby pickup hubs. No riders. No delivery. Just smooth, smart, reliable pickups.
-          </p>
-          <div class="list">
-            <div class="pill">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.5"/></svg>
-              <div>
-                <strong>Pickup‑only model</strong><br/>
-                Built for speed & control. You choose the time, we make pickup easy.
-              </div>
-            </div>
-            <div class="pill">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="1.5"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.5"/></svg>
-              <div>
-                <strong>Nearest hubs</strong><br/>
-                Prefer not to queue at the store? Pick up from our closest hub.
-              </div>
-            </div>
-            <div class="pill">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 6h18M3 12h12M3 18h6" stroke="currentColor" stroke-width="1.5"/></svg>
-              <div>
-                <strong>Simple & transparent</strong><br/>
-                Clear cut experience — no delivery promises, no confusion.
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+      <!-- ... About section ... -->
       <aside class="side">
         <div class="box">
           <strong>Questions? Talk to us</strong>
@@ -231,17 +74,15 @@
             <svg width="19" height="19" aria-hidden="true" style="vertical-align:middle; margin-right:6px; position:relative; top:-2px;" viewBox="0 0 24 24" fill="none"><path d="M6.29 7.38a14.07 14.07 0 0 0 6.33 6.33l2.13-2.13a1.34 1.34 0 0 1 1.32-.34 10.13 10.13 0 0 0 3.18.51 1.33 1.33 0 0 1 1.33 1.33v2.22a1.34 1.34 0 0 1-1.18 1.33C17.84 18 12 18 6.16 14.41A15.41 15.41 0 0 1 2 6.18 1.34 1.34 0 0 1 3.33 5h2.22a1.33 1.33 0 0 1 1.33 1.33c0 1.07.18 2.13.51 3.18a1.33 1.33 0 0 1-.34 1.32l-2.13 2.13Z" stroke="currentColor" stroke-width="1.5"/></svg>
             <a href="tel:+919353830775" style="color:inherit; text-decoration:none">+91 93538 30775</a>
           </div>
-          <form class="notify" action="https://formspree.io/f/your-id" method="POST">
-            <input type="email" name="email" placeholder="Enter your email for launch upd" required />
+          <!-- Notify Me form trigger -->
+          <form id="emailTriggerForm" class="notify" onsubmit="openModal(event)">
+            <input type="email" id="main-email" name="email" placeholder="Enter your email for launch upd" required />
             <button type="submit">Notify me</button>
           </form>
-          <small>(Replace the form action with your form URL, or remove this box.)</small>
+          <small>(You will be prompted for your name after clicking notify.)</small>
         </div>
         <div class="box">
-          <strong>Local Stores • Real Picks</strong>
-          <div style="font-size:15px; color:#cbd5e1; margin:6px 0 0;">
-            Connecting neighbourhood restaurants &amp; kirana stores with customers who love to pick up fast.
-          </div>
+          <!-- [Your "Local Stores • Real Picks" box] -->
         </div>
       </aside>
     </main>
@@ -250,8 +91,66 @@
       <div>© <span id="y"></span> Fyynk. All rights reserved.</div>
     </footer>
   </div>
+  
+  <!-- Popup Modal for Name and Email -->
+  <div class="modal-bg" id="modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()" title="Close">&times;</button>
+      <h3 style="margin-bottom:14px;">Get Launch Update</h3>
+      <form id="modalForm" action="https://formspree.io/f/your-unique-id" method="POST" autocomplete="off">
+        <input type="text" name="name" id="modalName" placeholder="Your Name" required style="margin-bottom:14px;" />
+        <input type="email" name="email" id="modalEmail" placeholder="Your Email" required style="margin-bottom:14px;" />
+        <button type="submit" style="margin-bottom:0;">Notify me</button>
+      </form>
+      <div id="successMessage">Thank you! You’ll get notified soon.</div>
+    </div>
+  </div>
+  
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Trigger popup modal
+    function openModal(e) {
+      e.preventDefault();
+      var emailInput = document.getElementById('main-email').value;
+      document.getElementById('modalEmail').value = emailInput;
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('successMessage').style.display = "none";
+      document.getElementById('modalForm').style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modalForm').reset();
+    }
+    // Handle Formspree AJAX and show success
+    document.getElementById('modalForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var form = e.target;
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(function(response){
+        if (response.ok) {
+          form.style.display = "none";
+          document.getElementById('successMessage').style.display = "block";
+          setTimeout(closeModal, 1800);
+        } else {
+          response.json().then(function(data){
+            if (Object.hasOwn(data, 'errors')) {
+              alert(data["errors"].map(error => error["message"]).join(", "));
+            } else {
+              alert("Oops! There was a problem submitting your form");
+            }
+          });
+        }
+      }).catch(function(error){
+        alert("Oops! There was a problem submitting your form");
+      });
+    });
   </script>
 </body>
 </html>
